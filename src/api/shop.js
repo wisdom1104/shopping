@@ -29,4 +29,14 @@ const getCart = async () => {
   return response.data;
 };
 
-export { getProducts, getProduct, addProduct, getCart };
+//장바구니 추가
+const addCart = async (id) => {
+  await axios.put(`${process.env.REACT_APP_SERVER_URL}/carts/7`);
+};
+
+//장바구니 삭제
+const removeCart = async (id) => {
+  await axios.delete(`${process.env.REACT_APP_SERVER_URL}/carts/6`);
+};
+
+export { getProducts, getProduct, addProduct, getCart, removeCart, addCart };

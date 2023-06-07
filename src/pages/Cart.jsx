@@ -1,7 +1,7 @@
 import React from "react";
-import { useQuery } from "react-query";
+import { useMutation, useQuery, useQueryClient } from "react-query";
 import { useNavigate } from "react-router-dom";
-import { getCart, getProducts } from "../api/shop";
+import { getCart, getProducts, removeCart } from "../api/shop";
 import { IoArrowBack } from "react-icons/io5";
 
 function Cart() {
@@ -12,6 +12,16 @@ function Cart() {
     data: cartData,
   } = useQuery("cart", getCart);
   const { data: productsData } = useQuery("products", getProducts);
+  const queryClient = useQueryClient();
+  const deleteMutation = useMutation(removeCart, {
+    onSuccess: () => {
+      queryClient.invalidateQueries("carts");
+    },
+  });
+  const onClickremoveBtn = (id) => {
+    deleteMutation.mutate(id);
+    alert("삭제 완료");
+  };
   const OnClickBackBtn = () => {
     navi("/");
   };
@@ -48,6 +58,13 @@ function Cart() {
                             <div>$ {item.price}</div>
                           </div>
                         </div>
+                        <button
+                          onClick={() => {
+                            onClickremoveBtn(item.id);
+                          }}
+                        >
+                          X
+                        </button>
                       </div>
                     );
                   }

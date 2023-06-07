@@ -1,6 +1,6 @@
 import React from "react";
-import { useQuery } from "react-query";
-import { getProduct } from "../api/shop";
+import { useMutation, useQuery, useQueryClient } from "react-query";
+import { addCart, getProduct } from "../api/shop";
 import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import { AiOutlineShoppingCart } from "react-icons/ai";
@@ -10,9 +10,17 @@ function Detail() {
   const navi = useNavigate();
   const { id } = useParams();
   const { data } = useQuery("product", () => getProduct(id));
+  const queryClient = useQueryClient();
+
+  const mutation = useMutation(addCart, {
+    onSuccess: () => {
+      queryClient.invalidateQueries("carts");
+    },
+  });
 
   const OnClickCartBtn = () => {
-    alert("cart");
+    mutation.mutate(id);
+    alert("상품이 장바구니에 담겼습니다.");
   };
 
   const OnClickBackBtn = () => {
