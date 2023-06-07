@@ -3,7 +3,18 @@ import { useMutation, useQuery, useQueryClient } from "react-query";
 import { useNavigate } from "react-router-dom";
 import { getCart, getProducts, removeCart } from "../api/shop";
 import { IoArrowBack } from "react-icons/io5";
-import styled from "styled-components";
+import {
+  BackBtn,
+  Box,
+  Btn,
+  CardImg,
+  PageTitle,
+  Price,
+  StCard,
+  TextBox,
+  Title,
+} from "../styles/styles";
+import { Column } from "../components/Flex";
 
 function Cart() {
   const navi = useNavigate();
@@ -36,12 +47,12 @@ function Cart() {
   }
   return (
     <Column>
-      <Row>
+      <PageTitle>
         <BackBtn onClick={OnClickBackBtn}>
           <IoArrowBack />
         </BackBtn>
         <h1>장바구니</h1>
-      </Row>
+      </PageTitle>
       {cartData ? (
         <Box direction="column">
           {cartData?.products.map((product) => (
@@ -86,85 +97,3 @@ function Cart() {
 }
 
 export default Cart;
-
-export const Column = styled.div`
-  display: flex;
-  flex-direction: column;
-  max-width: 1200px;
-  min-width: 800px;
-  height: 97vh;
-  margin: 0 auto;
-`;
-export const Row = styled.div`
-  display: flex;
-  width: 90%;
-  margin: 0 auto;
-`;
-const BackBtn = styled.button`
-  background-color: transparent;
-  border: none;
-  font-size: 50px;
-  cursor: pointer;
-  &:hover {
-    color: steelblue;
-  }
-`;
-
-const Price = styled.div`
-  color: gray;
-  font-size: 15px;
-  margin: 5px 0;
-  min-width: 50px;
-`;
-
-const Title = styled.div`
-  display: block;
-  width: 100%;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-`;
-
-const Box = styled.div`
-  display: flex;
-  flex-direction: ${(props) => props.direction || ""};
-  flex-wrap: wrap;
-  max-width: 1200px;
-  min-width: 800px;
-  margin: 0 auto;
-  gap: 20px;
-  column-gap: 15px;
-`;
-
-const StCard = styled.div`
-  border: 1px solid lightgray;
-  width: 97%;
-  height: 100px;
-  cursor: pointer;
-  padding: 10px;
-  display: flex;
-  gap: 11px;
-  position: relative;
-`;
-
-const CardImg = styled.img`
-  width: ${(props) => props.width || "100%"};
-  height: ${(props) => props.height || "220px"};
-  border-radius: 10px;
-  box-shadow: 5px 5px 5px lightgray;
-`;
-
-const TextBox = styled.div`
-  padding: 10px;
-
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-`;
-const Btn = styled.button`
-  background-color: transparent;
-  border: none;
-  &:hover {
-    color: steelblue;
-  }
-`;
