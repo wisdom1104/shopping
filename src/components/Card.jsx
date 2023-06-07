@@ -1,14 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import { AiOutlineShoppingCart } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 
 function Card({ card }) {
   const navi = useNavigate();
-
-  const OnClickCartBtn = () => {
-    alert("cart");
-  };
 
   const OnClickCard = (item) => {
     navi(`/detail/${item.id}`);
@@ -30,11 +25,6 @@ function Card({ card }) {
                 <TextBox>
                   <Title>{item.title}</Title>
                   <Price>${item.price}</Price>
-                  <CartBtn onClick={OnClickCartBtn}>
-                    <AiOutlineShoppingCart
-                      style={{ fontSize: "25px", cursor: "pointer" }}
-                    />
-                  </CartBtn>
                 </TextBox>
               </StCard>
             ))}
@@ -46,16 +36,7 @@ function Card({ card }) {
 }
 
 export default Card;
-const CartBtn = styled.button`
-  background-color: transparent;
-  border: none;
-  position: absolute;
-  bottom: 10px;
-  right: 15px;
-  &:hover {
-    color: steelblue;
-  }
-`;
+
 const Price = styled.div`
   color: gray;
   font-size: 15px;
