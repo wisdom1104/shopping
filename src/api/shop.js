@@ -21,4 +21,12 @@ const addProduct = async () => {
   await axios.post(`${process.env.REACT_APP_SERVER_URL}/products`);
 };
 
-export { getProducts, getProduct, addProduct };
+//장바구니 조회
+const getCart = async () => {
+  const response = await axios.get(
+    `${process.env.REACT_APP_SERVER_URL}/carts/5`
+  );
+  return response.data;
+};
+
+export { getProducts, getProduct, addProduct, getCart };
