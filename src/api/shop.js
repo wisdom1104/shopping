@@ -16,4 +16,9 @@ const getProduct = async (id) => {
   return response.data;
 };
 
-export { getProducts, getProduct };
+//상품 등록
+const addProduct = async () => {
+  await axios.post(`${process.env.REACT_APP_SERVER_URL}/products`);
+};
+
+export { getProducts, getProduct, addProduct };
