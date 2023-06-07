@@ -1,5 +1,15 @@
 import styled from "styled-components";
 
+export const BackBtn = styled.button`
+  background-color: transparent;
+  border: none;
+  font-size: 50px;
+  cursor: pointer;
+  &:hover {
+    color: steelblue;
+  }
+`;
+
 export const Price = styled.div`
   color: gray;
   font-size: 15px;
@@ -10,13 +20,24 @@ export const Price = styled.div`
 export const Title = styled.div`
   display: block;
   width: 100%;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  white-space: ${(props) => props.white || ""};
+  overflow: ${(props) => props.overflow || ""};
+  text-overflow: ${(props) => props.text || ""};
   margin-bottom: ${(props) => props.bottom || ""};
   font-size: ${(props) => props.fontSize || ""};
   font-weight: ${(props) => props.fontWeight || ""};
   line-height: ${(props) => props.line || ""};
+`;
+
+export const Description = styled.div`
+  margin-top: 20px;
+  font-size: 15px;
+  line-height: 30px;
+`;
+export const Category = styled.div`
+  margin: 40px 0 10px 0;
+  color: gray;
+  font-size: 15px;
 `;
 
 export const Box = styled.div`
@@ -58,7 +79,6 @@ export const TextBox = styled.div`
   justify-content: space-between;
   flex-direction: ${(props) => props.direction || ""};
 `;
-
 export const Btn = styled.button`
   background-color: transparent;
   border: none;
@@ -67,17 +87,64 @@ export const Btn = styled.button`
   }
 `;
 
-export const BackBtn = styled.button`
+export const Content = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 85%;
+  height: 400px;
+  margin: auto;
+`;
+
+export const CartBtn = styled.button`
   background-color: transparent;
   border: none;
-  font-size: 50px;
-  cursor: pointer;
+  position: absolute;
+  bottom: 20px;
+  left: 37%;
   &:hover {
     color: steelblue;
   }
 `;
 
+export const Contain = styled.div`
+  width: 50%;
+  position: relative;
+`;
+
+export const Img = styled.img`
+  width: 400px;
+  height: 400px;
+  border-radius: 10px;
+  margin: 20px;
+  margin-top: 0px;
+`;
+
 export const PageTitle = styled.div`
   display: flex;
   margin-left: 60px;
+`;
+
+export const Textarea = styled.textarea`
+  width: 100%;
+  height: 250px;
+  font-size: 20px;
+`;
+export const Input = styled.input`
+  width: 100%;
+  height: 40px;
+  font-size: 20px;
+`;
+
+export const SubmitBtn = styled.button`
+  background-color: white;
+  border: 1px solid gray;
+  border-radius: 10px;
+  font-size: 25px;
+  font-weight: 700;
+  margin: 30px 80px;
+  cursor: pointer;
+  &:hover {
+    color: steelblue;
+    border: 2px solid steelblue;
+  }
 `;

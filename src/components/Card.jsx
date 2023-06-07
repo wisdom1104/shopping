@@ -27,7 +27,9 @@ function Card({ card }) {
               >
                 <CardImg alt="productImg" src={item.image} />
                 <TextBox direction="column">
-                  <Title>{item.title}</Title>
+                  <Title white="nowrap" overflow="hidden" text="ellipsis">
+                    {item.title}
+                  </Title>
                   <Price>${item.price}</Price>
                 </TextBox>
               </StCard>
